@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tests, Les Élites</title>
+<style>
+:root{--navy:#14263a;--gold:#c2a15f;--bg:#f7f3ea;--ink:#14263a;--muted:#4b5a6b;--card:#fff;--line:#e2d9c4;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0f1c2b;--ink:#f1ead8;--muted:#a9b4c0;--card:#162739;--line:#2a3d52}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.05rem/1.6 system-ui,sans-serif}
+header{background:var(--navy);color:#f7f3ea;padding:1.4rem 1rem;text-align:center}
+header h1{margin:0;font:700 2rem Georgia,serif}
+header a{color:var(--gold)}
+main{max-width:720px;margin:0 auto;padding:1.5rem 1rem 3rem}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:6px;padding:1rem 1.2rem;margin:0 0 1rem}
+.card h3{margin:0 0 .2rem;font:700 1.4rem Georgia,serif}
+.card p{margin:.2rem 0 .8rem;color:var(--muted)}
+button,input[type=text]{font:inherit}
+.btn{background:var(--gold);color:#14263a;font-weight:600;border:0;border-radius:999px;padding:.7rem 1.4rem;cursor:pointer}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+input[type=text]{width:100%;padding:.8rem 1rem;border:1px solid var(--gold);border-radius:8px;background:var(--card);color:var(--ink);margin:.4rem 0 1.2rem}
+#bar{position:sticky;top:0;z-index:5;background:var(--navy);color:#f7f3ea;padding:.7rem 1rem;display:flex;justify-content:space-between;font-weight:600;padding-top:calc(.7rem + env(safe-area-inset-top,0px))}
+#bar.low{background:#8a1f1f}
+.q{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1rem 1.2rem;margin:0 0 1rem}
+.q p{margin:0 0 .6rem}
+.q label{display:block;padding:.55rem .8rem;border:1px solid var(--line);border-radius:6px;margin:.35rem 0;cursor:pointer}
+.q label:has(input:checked){border-color:var(--gold);background:rgba(194,161,95,.2)}
+#warn{background:#fff3cd;color:#5c4400;padding:.7rem 1rem;border-radius:6px;margin-bottom:1rem;display:none}
+.big{font:700 3rem Georgia,serif;margin:.3rem 0}
+.hide{display:none}
+</style>
+</head>
+<body>
+<header><h1>Tests des Élites</h1><a href="index.html">← Retour au site</a></header>
+<main id="app"></main>
+<script>
+const T={
+fr:{t:"Français : le participe passé",d:"Évaluation complète : accord avec être, avoir et les verbes pronominaux.",s:600,q:[
+["Quel est le participe passé du verbe « finir » ?",["fini","finit","finis","finissant"]],
+["Quel est le participe passé du verbe « prendre » ?",["pris","prit","prendu","prenant"]],
+["Quel est le participe passé du verbe « mourir » ?",["mort","mouru","mouri","morti"]],
+["Les fleurs que j’ai ___ sont belles. (cueillir)",["cueillies","cueilli","cueillis","cueillit"]],
+["Elle est ___ hier soir. (partir)",["partie","parti","partis","partit"]],
+["Ils ont ___ leurs devoirs. (finir)",["fini","finis","finie","finit"]],
+["Marie et Paul sont ___ au cinéma. (aller)",["allés","allé","allées","allée"]],
+["Avec l’auxiliaire avoir, le participe passé s’accorde avec :",["le COD, s’il est placé avant le verbe","toujours le sujet","jamais avec rien","le COD placé après le verbe"]],
+["Les lettres qu’il a ___ sont arrivées. (écrire)",["écrites","écrit","écrits","écrite"]],
+["Elle s’est ___ hier. (réveiller)",["réveillée","réveillé","réveillés","réveillées"]],
+["Elles se sont ___ des cadeaux. (offrir)",["offert","offerts","offertes","offerte"]],
+["La maison qu’ils ont ___ est grande. (construire)",["construite","construit","construits","construites"]],
+["Elles sont ___ en Côte d’Ivoire. (naître)",["nées","né","nés","née"]],
+["Les efforts qu’il a ___ ont payé. (fournir)",["fournis","fourni","fournie","fournit"]],
+["Un participe passé employé seul, sans auxiliaire, s’accorde :",["comme un adjectif, avec le nom qu’il qualifie","jamais, il est invariable","uniquement avec le COD","uniquement avec l’auxiliaire"]]]},
+fonctions:{t:"Fonctions",d:"Domaine de définition, limites, dérivées et asymptotes.",q:[
+["Domaine de définition de f(x) = 1 / (x − 3) :",["ℝ privé de 3","ℝ","]3 ; +∞[","ℝ privé de −3"]],
+["Domaine de définition de f(x) = √(x − 4) :",["[4 ; +∞[","]4 ; +∞[","]−∞ ; 4]","ℝ"]],
+["Limite en +∞ de (3x² + 1) / (x² − 5) :",["3","0","+∞","−1/5"]],
+["Limite en +∞ de (2x + 1) / (x² + 1) :",["0","2","+∞","1"]],
+["Dérivée de f(x) = 3x² + 5x − 7 :",["6x + 5","3x + 5","6x² + 5","6x − 7"]],
+["Dérivée de f(x) = x·eˣ :",["(1 + x)eˣ","eˣ","x·eˣ","1 + eˣ"]],
+["La droite x = 2 est asymptote verticale à la courbe de f si :",["la limite de f(x) quand x tend vers 2 est infinie","f(2) = 0","la limite de f en +∞ vaut 2","f ′(2) = 0"]],
+["Si la limite de f(x) en +∞ vaut 5, la courbe admet :",["une asymptote horizontale y = 5","une asymptote verticale x = 5","une asymptote oblique","aucune asymptote"]]]},
+maths:{t:"Culture générale en mathématiques",d:"Calcul, géométrie, probabilités et statistiques.",q:[
+["Valeur approchée de π :",["3,14","2,71","1,62","1,41"]],
+["Quel nombre est premier ?",["17","21","39","51"]],
+["Solution de 2x + 6 = 0 :",["x = −3","x = 3","x = −6","x = 6"]],
+["Théorème de Pythagore dans un triangle rectangle d’hypoténuse c :",["a² + b² = c²","a + b = c","a² − b² = c²","a·b = c²"]],
+["Aire d’un disque de rayon r :",["πr²","2πr","πr","4πr²"]],
+["Une probabilité est toujours comprise entre :",["0 et 1","−1 et 1","0 et 10","1 et +∞"]],
+["Moyenne de 10, 12 et 14 :",["12","10","14","13"]],
+["Valeur de ln(1) :",["0","1","e","−1"]]]},
+info:{t:"Culture générale en informatique",d:"Matériel, systèmes, réseaux, web et bases de données.",q:[
+["La RAM est :",["la mémoire temporaire utilisée par les programmes en cours","le disque de stockage permanent","le processeur","la carte mère"]],
+["Le CPU désigne :",["le processeur","la mémoire vive","l’écran","l’alimentation"]],
+["Lequel est un système d’exploitation ?",["Linux","Chrome","Excel","Python"]],
+["Une adresse IPv4 est composée de :",["4 nombres entre 0 et 255","6 nombres entre 0 et 255","4 nombres entre 0 et 999","8 lettres"]],
+["SQL signifie :",["Structured Query Language","Simple Question Language","System Query Logic","Standard Quick Link"]],
+["Quel langage sert à structurer une page web ?",["HTML","Java","SQL","C"]],
+["Un octet contient :",["8 bits","4 bits","16 bits","10 bits"]],
+["Quel protocole sécurise la navigation web ?",["HTTPS","FTP","SMTP","DNS"]]]}};
+const DUREE=300,app=document.getElementById("app");
+let CODE="",NOM="";const K=id=>"elites_test_"+id+"_"+CODE;
+const get=id=>{try{return JSON.parse(localStorage.getItem(K(id)))}catch(e){return null}};
+const put=(id,v)=>{try{localStorage.setItem(K(id),JSON.stringify(v))}catch(e){}};
+const sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let cur=null,timer=null,left=0,leaves=0,items=[];
+function chk(){const ni=document.getElementById("nom"),m=document.getElementById("nm"),v=ni.value.trim();
+ const bad=x=>{ni.style.borderColor="#b3261e";m.style.color="#b3261e";m.textContent=x;return false};
+ if(!v)return bad("Entre ton nom.");
+ if(!/^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ' -]+$/.test(v))return bad("Nom invalide : utilise seulement des lettres.");
+ ni.style.borderColor="#2e7d32";m.style.color="#2e7d32";m.textContent="Nom valide ✓";return true}
+function home(){
+ let name="";try{name=localStorage.getItem("elites_nom")||""}catch(e){}
+ app.innerHTML='<p>Chaque test est chronométré (durée indiquée) et ne peut être fait qu’une seule fois avec ton code. Si tu quittes la page pendant le test (changement d’application, appel, notification), le test s’arrête aussitôt avec les réponses déjà données. Reste sur cette page pendant le test.</p>'+(NOM?'<p style="font-size:1.2rem"><b>Bienvenue '+NOM+'</b></p>':'<label for="nom"><b>Ton nom</b></label><input type="text" id="nom" placeholder="Prénom et nom" value="'+name.replace(/"/g,"")+'"><p id="nm" style="margin:-.8rem 0 1rem"></p>')+''+
+ Object.keys(T).map(id=>{const r=get(id);return '<div class="card"><h3>'+T[id].t+'</h3><p>'+T[id].d+' '+T[id].q.length+' questions, '+((T[id].s||DUREE)/60)+' min.</p>'+(r?'<b>'+(r.done?'Déjà passé : '+r.score+' / '+r.total+' (note : '+(Math.round(r.score/r.total*200)/10)+' / 20)':'Test commencé mais non terminé : 0 / '+r.total)+'</b>':'<button class="btn" data-id="'+id+'">Commencer</button>')+'</div>'}).join("");
+ app.querySelectorAll("button[data-id]").forEach(b=>b.onclick=()=>start(b.dataset.id));
+ const ni=document.getElementById("nom");if(ni){ni.addEventListener("input",chk);if(ni.value)chk()}
+}
+function start(id){
+ let nom=NOM;if(!NOM){if(!chk()){document.getElementById("nom").focus();return}nom=document.getElementById("nom").value.trim();try{localStorage.setItem("elites_nom",nom)}catch(e){}}
+ if(get(id))return;
+ const t=T[id];cur=id;leaves=0;left=t.s||DUREE;
+ put(id,{done:false,score:0,total:t.q.length,name:nom});
+ items=sh(t.q.slice()).map(([q,o])=>{const good=o[0];return{q,o:sh(o.slice()),good}});
+ app.innerHTML='<div id="bar"><span>'+t.t+'</span><span id="tm"></span></div><div id="warn"></div><div style="height:1rem"></div>'+
+ items.map((it,i)=>'<div class="q"><p><b>'+(i+1)+'.</b> '+it.q+'</p>'+it.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"> '+o+'</label>').join("")+'</div>').join("")+
+ '<button class="btn" id="fin">Terminer le test</button>';
+ let armed=false;const fb=document.getElementById("fin");
+ fb.onclick=()=>{if(armed){finish();return}armed=true;fb.textContent="Appuie encore pour confirmer la fin du test";setTimeout(()=>{armed=false;fb.textContent="Terminer le test"},4000)};
+ tick();timer=setInterval(tick,1000);window.scrollTo(0,0);
+}
+function tick(){
+ const m=Math.floor(left/60),s=left%60;
+ document.getElementById("tm").textContent="⏱ "+m+":"+String(s).padStart(2,"0");
+ document.getElementById("bar").classList.toggle("low",left<=60);
+ if(left<=0)finish("Temps écoulé.");left--;
+}
+function finish(why){
+ if(!cur)return;clearInterval(timer);
+ let sc=0;items.forEach((it,i)=>{const c=document.querySelector('input[name="q'+i+'"]:checked');if(c&&it.o[c.value]===it.good)sc++});
+ const id=cur,n=items.length,r=get(id)||{};cur=null;
+ put(id,{done:true,score:sc,total:n,name:r.name});
+ const note=Math.round(sc/n*200)/10;
+ const msg=(r.name||"Un membre")+" a obtenu "+sc+"/"+n+" (note : "+note+"/20) au test « "+T[id].t+" » des Élites. À toi de jouer : "+location.href.split("#")[0];
+ app.innerHTML='<div class="card" style="text-align:center"><h3>'+T[id].t+'</h3><p>Bravo '+(r.name||"")+', test terminé.</p><div class="big">'+sc+' / '+n+'</div><p>Note sur 20 : <b>'+note+'</b></p>'+(why?'<p style="color:#b3261e">'+why+'</p>':'')+'<p><a class="btn" style="display:inline-block;text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(msg)+'">Partager mon score sur WhatsApp</a></p><button class="btn" onclick="home()">Retour aux tests</button></div>';
+ window.scrollTo(0,0);
+}
+document.addEventListener("visibilitychange",()=>{if(cur&&document.hidden)finish("Tu as quitté la page : le test a été arrêté.")});
+const B=["M+TWZVSy4v3Sci44Pvmy2Jbr2KkE2ySRdNTOERZIovdRbHWYMEQaW8wl7Qr6iEIY8MvsvBsdtm8oy4Et2JSEe9O1T5TThFo=", "VMCr6Twjiqq2hru64QbHR2v1rBxSx4U4juBBoV0tyg9dDy12KtmZlbOojXWxSEkrvE1LY86gu35Tt/Z0jTG5Ag==", "6Q+YxUvVnxCek5dnPr3FhxBeEu8dLQ5eHAIKndtNW2aCdmmI4R2ISogVy1PRDtz3EgDHQ/1DWoQllHYvxUI=", "LKFIXC7RGh/kRbUUNZ/NqaGWXjKHqXntUQiz/1FbE0sGL53kCkFF7HX/Y+jifCmOjpRjBWbrfKTr7UzdLQMnyM5SJd1LFMBH", "hkyeywbl8ZhBbgddgLT7BFsC+1cJ1HJx1F9/P+xPYLd2mGpL547IHgxTf1pXbzNORrEguEPdV3ghfqp8XnYR81+jZzM=", "fcqakx0IXcw63lJGr6wIlERzroGC0DDGgXS0dM904oXXCrIm9bXxNANLlgwBVFZNrkAnMNFdW0fevDzK41H+vsGB", "Z4P14yWvX8TKGydsxIGzkGMFaOHbUEuhnS3xaedwwlp04v5nmN7KitZB5YQo/iYKnp7Fy1c5EGO1A+84J53B5VWYjYtd", "PKQsQMxLhPSNMSziofNWCaxZjBJ0DPkOP11Q72/dxHVb9QKSNhzLZ9NzQHRulXQhLiexD27Sf/lBBBNQlLfHfCJN4/xV", "oBZs4hV+0VB6VBdOvdJj+XXVr0ZEf9Qve9PDbs92HJpGHyMJIGH/wI5aQ/UmPUIZfUF0ZHVbpsPF863ikx9He+yaG8xzW/60Kw==", "ZaesViCKUQU0zKOwGHbEXrNPFWI9A9P5sUZ1zHgL9Hzm0tMCSPqE+mqiq/GIku/1ivwHtI8WVQ=="];
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function ok(code){
+ const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(code),"PBKDF2",false,["deriveKey"]);
+ for(const it of B){const d=b64(it);try{
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:d.slice(0,16),iterations:100000,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["decrypt"]);
+  return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:d.slice(16,28)},key,d.slice(28))))}catch(e){}}
+ return null}
+function gate(){
+ app.innerHTML='<div class="card"><h3>Accès réservé aux membres</h3><p>Entre ton code de membre pour accéder aux tests.</p><input type="text" id="cd" placeholder="ELITE-XXXXX" autocomplete="off"><button class="btn" id="vb">Valider</button><p id="er" style="color:#b3261e;margin:.6rem 0 0"></p></div>';
+ const go=async()=>{const c=document.getElementById("cd").value.trim().toUpperCase(),e=document.getElementById("er");
+  if(!c){e.textContent="Entre ton code.";return}
+  e.textContent="Vérification…";let r=null;try{r=await ok(c)}catch(x){}
+  if(!r){e.textContent="Code incorrect.";return}
+  CODE=c;NOM=r.nom||"";try{sessionStorage.setItem("elites_code",c)}catch(x){}home()};
+ document.getElementById("vb").onclick=go;
+ document.getElementById("cd").addEventListener("keydown",ev=>{if(ev.key==="Enter")go()})}
+async function boot(){let c=null;try{c=sessionStorage.getItem("elites_code")}catch(e){}
+ if(c){try{const r=await ok(c);if(r){CODE=c;NOM=r.nom||"";home();return}}catch(e){}}gate()}
+boot();
+</script>
+</body>
+</html>

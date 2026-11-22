@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Les Élites, groupe d’étude BTS IDA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#14263a;--gold:#c2a15f;--ivory:#f7f3ea;--bg:#f7f3ea;--ink:#14263a;--muted:#4b5a6b;--card:#ffffff;--line:#e2d9c4;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"Figtree",system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f1c2b;--ink:#f1ead8;--muted:#a9b4c0;--card:#162739;--line:#2a3d52}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0f1c2b;--ink:#f1ead8;--muted:#a9b4c0;--card:#162739;--line:#2a3d52}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:1.05rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.hero{background:var(--navy);color:#f7f3ea;text-align:center;padding:3.5rem 1.25rem 4rem}
+.seal{width:min(300px,72vw);aspect-ratio:1;border-radius:50%;overflow:hidden;margin:0 auto 1.5rem;box-shadow:0 0 0 2px var(--gold),0 0 70px rgba(194,161,95,.35);animation:rise 1.2s ease-out both}
+.seal img{width:146%;max-width:none;display:block;margin:-23% 0 0 -23%}
+@keyframes rise{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.seal{animation:none}html{scroll-behavior:auto}}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.6rem,9vw,4.6rem);line-height:1.05;margin:0 0 .6rem;letter-spacing:.01em}
+.hero p{max-width:34rem;margin:0 auto 1.8rem;color:#d9d2bf;font-size:1.15rem}
+.btn{display:inline-block;background:var(--gold);color:#14263a;font-weight:600;text-decoration:none;padding:.85rem 1.6rem;border-radius:999px}
+.btn:hover{background:#d4b676}
+.btn.ghost{background:transparent;color:#f7f3ea;border:1px solid var(--gold);margin-left:.5rem}
+nav{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1rem;background:var(--card);border-bottom:1px solid var(--line);font-weight:600}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--ink)}
+section{max-width:860px;margin:0 auto;padding:3.5rem 1.25rem 0}
+h2{font-family:var(--serif);font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.15;margin:0 0 .5rem}
+.lead{color:var(--muted);max-width:40rem;margin:0 0 1.6rem}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:6px;padding:1.2rem 1.3rem}
+.card h3{font-family:var(--serif);font-size:1.45rem;margin:0 0 .3rem}
+.card p{margin:0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:.6rem;padding:0;list-style:none;margin:0}
+.tags li{border:1px solid var(--gold);border-radius:999px;padding:.35rem 1rem;background:var(--card)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line)}
+th,td{text-align:left;padding:.8rem 1rem;border-bottom:1px solid var(--line)}
+th{font-family:var(--serif);font-size:1.15rem;background:var(--navy);color:#f7f3ea}
+.scroll{overflow-x:auto}
+.contact{background:var(--navy);color:#f7f3ea;border-radius:10px;padding:2rem 1.5rem;text-align:center}
+.contact p{color:#d9d2bf;margin:.4rem 0 1.2rem}
+footer{text-align:center;color:var(--muted);padding:3rem 1rem 2.5rem;font-size:.95rem}
+
+.days{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.day{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:6px;padding:1rem 1.2rem}
+.day h3{font-family:var(--serif);font-size:1.5rem;margin:0 0 .6rem}
+.slot{padding:.6rem 0;border-top:1px solid var(--line)}
+.slot b{display:block}.slot span{color:var(--muted);font-size:.95rem}
+.note{color:var(--muted);font-size:.95rem;margin-top:1rem}
+.gate{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.gate input{font:inherit;padding:.8rem 1rem;border-radius:999px;border:1px solid var(--gold);width:min(15rem,100%);text-align:center;letter-spacing:.08em;text-transform:uppercase;background:#fff;color:#14263a}
+.gate button{border:0;cursor:pointer;font:inherit;font-weight:600}
+#err{color:#ffb4a8;min-height:1.5rem;margin:.8rem 0 0}
+#links{display:none;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
+.vis{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.members{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.member{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.member img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.member div{padding:1rem 1.2rem 1.3rem}
+.member h3{font-family:var(--serif);font-size:1.5rem;margin:0 0 .5rem}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="seal"><img src="logo.jpg" alt="Logo des Élites : une torche devant un livre ouvert, entourée de lauriers"></div>
+  <h1>Les Élites</h1>
+  <p>Le groupe d’étude des étudiants de BTS IDA, première année. On apprend à coder, on révise ensemble et on avance plus vite.</p>
+  <a class="btn" href="#rejoindre">Rejoindre le groupe</a>
+  <a class="btn ghost" href="#emploi">Voir l’emploi du temps</a>
+</header>
+<nav aria-label="Navigation principale">
+  <a href="#activites">Activités</a><a href="#emploi">Emploi du temps</a><a href="#visio">Rendez-vous</a><a href="#membres">Membres</a><a href="test.html">Tests</a><a href="#rejoindre">Rejoindre</a>
+</nav>
+
+<main>
+<section id="activites">
+  <h2>Ce qu’on fait ensemble</h2>
+  <p class="lead">Chaque membre apporte ses forces et aide les autres sur ses points faibles.</p>
+  <div class="grid">
+    <div class="card"><h3>Réviser les cours</h3><p>On reprend les chapitres, on se pose des questions et on corrige les exercices ensemble.</p></div>
+    <div class="card"><h3>Coder en équipe</h3><p>On s’entraîne sur des exercices de programmation et on relit le code des autres.</p></div>
+    <div class="card"><h3>Préparer les examens</h3><p>Sujets blancs, fiches de révision et conseils avant chaque contrôle.</p></div>
+  </div>
+</section>
+
+<section id="emploi">
+  <h2>Emploi du temps</h2>
+  <p class="lead">Nos cours de première année. Pas de cours le lundi ni le jeudi.</p>
+  <div class="days"><div class="day"><h3>Mardi</h3><div class="slot"><b>07h45–09h35 · Anglais</b><span>M. Coulibaly Dognimin</span></div><div class="slot"><b>09h35–12h35 · TEEO</b><span>Dre Kouamé Debora</span></div><div class="slot"><b>13h15–16h00 · Merise et BD</b><span>M. Konin</span></div><div class="slot"><b>16h10–17h50 · Droit</b><span>M. N’dri</span></div></div><div class="day"><h3>Mercredi</h3><div class="slot"><b>13h15–17h50 · Algo + Web</b><span>M. Bokpé</span></div></div><div class="day"><h3>Vendredi</h3><div class="slot"><b>07h45–12h35 · ASI-SE</b><span>M. N’go</span></div></div><div class="day"><h3>Samedi</h3><div class="slot"><b>07h45–12h35 · Maths générales</b><span>M. Konaté</span></div></div></div>
+  <p class="note">Pauses : 10h30–10h45, 12h35–13h15 et 16h00–16h10. Les salles changent chaque semaine : vérifie-les avant de venir.</p>
+</section>
+
+<section id="visio">
+  <h2>Nos rendez-vous en ligne</h2>
+  <p class="lead">En plus des cours, on se retrouve sur WhatsApp.</p>
+  <div class="vis">
+    <div class="card"><h3>Appel vidéo</h3><p>Chaque mercredi et chaque dimanche, à partir de 20 h 30. On traite des sujets, on révise et on travaille les notions ensemble.</p></div>
+    <div class="card"><h3>Chaîne WhatsApp</h3><p>Conseils d’usage, informations sur la programmation, documentation et bibliothèques pour les développeurs.</p></div>
+  </div>
+</section>
+
+<section id="membres">
+  <h2>Les membres</h2>
+  <p class="lead">Les membres du groupe.</p>
+  <div class="members"><figure class="member" style="margin:0"><img src="membre-1.jpg" alt="Photo de Mr. Raoul F."><div><h3>Mr. Raoul F.</h3></div></figure><figure class="member" style="margin:0"><img src="membre-2.jpg" alt="Photo de Mr. Douin Cédric"><div><h3>Mr. Douin Cédric</h3></div></figure><figure class="member" style="margin:0"><img src="membre-3.jpg" alt="Photo de Mr. Jean Aimé"><div><h3>Mr. Jean Aimé</h3></div></figure><figure class="member" style="margin:0"><img src="membre-4.jpg" alt="Photo de Mr. Aziz"><div><h3>Mr. Aziz</h3></div></figure><figure class="member" style="margin:0"><img src="membre-5.jpg" alt="Photo de M. Blue"><div><h3>M. Blue</h3></div></figure><figure class="member" style="margin:0"><img src="membre-6.jpg" alt="Photo de Fondio Saran"><div><h3>Fondio Saran</h3></div></figure></div>
+</section>
+
+<section id="rejoindre">
+  <div class="contact">
+    <h2>Rejoindre le groupe</h2>
+    <p>Entre ton code de membre pour afficher le lien du groupe et celui de la chaîne WhatsApp.</p>
+    <div class="gate"><input id="code" type="text" placeholder="ELITE-XXXXX" autocomplete="off" aria-label="Code de membre"><button class="btn" id="go">Valider le code</button></div>
+    <p id="err" role="alert"></p>
+    <div id="links"><a class="btn" id="l1" target="_blank" rel="noopener">Ouvrir le groupe WhatsApp</a><a class="btn ghost" id="l2" target="_blank" rel="noopener">Ouvrir la chaîne WhatsApp</a></div>
+  </div>
+</section>
+</main>
+<footer>© 2026 Les Élites, groupe d’étude BTS IDA</footer>
+<script>
+const B=["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"];
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function tryCode(code){
+ const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(code),"PBKDF2",false,["deriveKey"]);
+ for(const it of B){
+  const d=b64(it),salt=d.slice(0,16),iv=d.slice(16,28),ct=d.slice(28);
+  try{
+   const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:100000,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["decrypt"]);
+   return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv},key,ct)));
+  }catch(e){}
+ }
+ return null;
+}
+const inp=document.getElementById("code"),err=document.getElementById("err"),go=document.getElementById("go");
+async function check(){
+ const c=inp.value.trim().toUpperCase();
+ if(!c){err.textContent="Entre ton code de membre.";return}
+ err.textContent="Vérification…";go.disabled=true;
+ let r=null;try{r=await tryCode(c)}catch(e){}
+ go.disabled=false;
+ if(!r){err.textContent="Code incorrect. Vérifie-le ou demande-le à un responsable du groupe.";return}
+ err.textContent="Code valide. Bienvenue chez les Élites !";
+ document.getElementById("l1").href=r.groupe;document.getElementById("l2").href=r.chaine;
+ document.getElementById("links").style.display="flex";
+}
+go.addEventListener("click",check);
+inp.addEventListener("keydown",e=>{if(e.key==="Enter")check()});
+</script>
+</body>
+</html>
